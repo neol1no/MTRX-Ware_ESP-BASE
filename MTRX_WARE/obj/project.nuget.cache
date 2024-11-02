@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "62QCzyC/3Js+AZHs6dgHSI9TN6bjULsOJfDB5gUcaKGbYbJntEKuLq40C7IH0+rEMrWNWJcLJKGO1oa6fUViYg==",
+  "dgSpecHash": "GCDMD7LrKG25j8aRKpkBWLbbr70PWysWOzFMXnpnTf9+tRSVk1rfO113YeqFBJLssRg0n40Zw2vOT99oOyzoCA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\CEO I Matrix\\Desktop\\mtrx ware\\2 MTRX_WARE\\MTRX_WARE\\MTRX_WARE.csproj",
+  "projectFilePath": "C:\\Users\\CEO I Matrix\\Desktop\\mtrx ware\\2 MTRX_WARE\\MTRX-Ware.io\\MTRX_WARE\\MTRX_WARE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CEO I Matrix\\.nuget\\packages\\clickabletransparentoverlay\\9.1.0\\clickabletransparentoverlay.9.1.0.nupkg.sha512",
     "C:\\Users\\CEO I Matrix\\.nuget\\packages\\costura.fody\\5.7.0\\costura.fody.5.7.0.nupkg.sha512",
