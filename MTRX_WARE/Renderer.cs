@@ -63,6 +63,8 @@ namespace MTRX_WARE
             ImGui.PushStyleColor(ImGuiCol.HeaderHovered, new Vector4(0.25f, 0.25f, 0.25f, 1.0f)); // Hovered state for header
             ImGui.PushStyleColor(ImGuiCol.HeaderActive, new Vector4(0.22f, 0.22f, 0.22f, 1.0f));  // Active state for header
 
+            ImGui.PushStyleVar(ImGuiStyleVar.ItemSpacing, new Vector2(10, 10));
+            ImGui.PushStyleVar(ImGuiStyleVar.FramePadding, new Vector2(10, 5));
 
             // Menu buttons
             if (ImGui.Button("Aimbot", new Vector2(100.0f, 0.0f)))
@@ -76,6 +78,17 @@ namespace MTRX_WARE
             ImGui.SameLine(0.0f, 2.0f); // Same line with small spacing
             if (ImGui.Button("Misc", new Vector2(100.0f, 0.0f)))
                 switchTabs = 3;
+
+            float windowWidth = ImGui.GetWindowWidth();
+            float lineY = ImGui.GetItemRectMax().Y + 10; // Position the line slightly below the buttons
+
+            // Draw a line spanning the window width
+            ImGui.GetWindowDrawList().AddLine(
+                new Vector2(ImGui.GetWindowPos().X, lineY),
+                new Vector2(ImGui.GetWindowPos().X + windowWidth, lineY),
+                ImGui.ColorConvertFloat4ToU32(new Vector4(0.15f, 0.15f, 0.15f, 1.0f)), // Darker than background
+                2.0f // Line thickness
+            );
 
             switch (switchTabs)
             {
