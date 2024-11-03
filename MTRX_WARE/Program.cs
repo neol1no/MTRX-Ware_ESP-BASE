@@ -38,6 +38,8 @@ int m_lifeState = 0x348;
 int m_hPlayerPawn = 0x80C;
 int m_vecViewOffset = 0xCB0;
 int m_iszPlayerName = 0x660;
+int m_modelState = 0x170;
+int m_pGameSceneNode = 0x328;
 
 // ESP loop
 while (true)
@@ -83,6 +85,9 @@ while (true)
         // get matrix
         float[] viewMatrix = swed.ReadMatrix(client + dwViewMatrix);
 
+        IntPtr sceneNode = swed.ReadPointer(currentPawn, m_pGameSceneNode);
+        IntPtr boneMatrix = swed.ReadPointer(sceneNode, m_modelState + 0x80);
+
         // populate entity
         Entity entity = new Entity();
 
@@ -92,6 +97,9 @@ while (true)
         entity.viewOffset = swed.ReadVec(currentPawn, m_vecViewOffset);
         entity.position2D = Calculate.WorldToScreen(viewMatrix, entity.position, screenSize);
         entity.viewPosition2D = Calculate.WorldToScreen(viewMatrix, Vector3.Add(entity.position, entity.viewOffset), screenSize);
+        entity.distance = Vector3.Distance(entity.position, localPlayer.position);
+        entity.bones = Calculate.ReadBones(boneMatrix, swed);
+        entity.bones2d = Calculate.ReadBones2d(entity.bones, viewMatrix, screenSize);
 
         entities.Add(entity);
     }
@@ -100,6 +108,7 @@ while (true)
     renderer.UpdateLocalPlayer(localPlayer);
     renderer.UpdateEntities(entities);
 
+    Thread.Sleep(1);
     // Thread
 
 }

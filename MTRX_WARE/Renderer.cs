@@ -28,10 +28,15 @@ namespace MTRX_WARE
         private bool enableBhop = false;
         private bool enableLineESP = true;
         private bool enableBoxESP = true;
+        private bool enableSkeletonESP = true;
+        private bool enableDistanceESP = true;
         private Vector4 enemyColor = new Vector4(1, 0, 0, 1); // default red
         private Vector4 teamColor = new Vector4(0, 1, 0, 1); // default green
         private Vector4 nameColor = new Vector4(1, 1, 1, 1); // default white
-        
+        private Vector4 boneColor = new Vector4(1, 1, 1, 1); // default white
+
+        float boneThickness = 4;
+
         // draw list
         ImDrawListPtr drawlist;
 
@@ -81,8 +86,10 @@ namespace MTRX_WARE
                 case 1: // VISUALS
                     ImGui.Checkbox("Enable ESP", ref enableESP);
                     ImGui.Checkbox("Enable Box ESP", ref enableBoxESP);
+                    ImGui.Checkbox("Enable Skeleton ESP", ref enableSkeletonESP);
                     ImGui.Checkbox("Enable Line ESP", ref enableLineESP);
                     ImGui.Checkbox("Enable Name ESP", ref enableNameESP);
+                    ImGui.Checkbox("Enable Distance ESP", ref enableDistanceESP);
                     // team color
                     ImGui.Text("Team Color");
                     ImGui.SameLine();
@@ -91,6 +98,11 @@ namespace MTRX_WARE
                     ImGui.Text("Enemy Color");
                     ImGui.SameLine();
                     ImGui.ColorEdit4("##enemycolor", ref enemyColor, ImGuiColorEditFlags.NoInputs | ImGuiColorEditFlags.NoLabel | ImGuiColorEditFlags.AlphaPreviewHalf);
+                    // bone color
+                    // enemy color
+                    ImGui.Text("Bone Color");
+                    ImGui.SameLine();
+                    ImGui.ColorEdit4("##bonecolor", ref boneColor, ImGuiColorEditFlags.NoInputs | ImGuiColorEditFlags.NoLabel | ImGuiColorEditFlags.AlphaPreviewHalf);
                     break;
 
                 case 2: // Exploits
@@ -141,6 +153,26 @@ namespace MTRX_WARE
                         }
                     }
                 }
+                if (enableSkeletonESP)
+                {
+                    foreach (var entity in entities)
+                    {
+                        if (EntityOnScreen(entity))
+                        {
+                            DrawBones(entity);
+                        }
+                    }
+                }
+                if (enableDistanceESP)
+                {
+                    foreach (var entity in entities)
+                    {
+                        if (EntityOnScreen(entity))
+                        {
+                            DrawDistance(entity, 65);
+                        }
+                    }
+                }
             }
         }
 
@@ -155,10 +187,37 @@ namespace MTRX_WARE
         }
 
         // drawing method
+
+        private void DrawBones(Entity entity)
+        {
+            uint uintColor = ImGui.ColorConvertFloat4ToU32(boneColor);
+            float currentBoneThickness = boneThickness / entity.distance;
+
+            drawlist.AddLine(entity.bones2d[1], entity.bones2d[2], uintColor, currentBoneThickness);
+            drawlist.AddLine(entity.bones2d[1], entity.bones2d[3], uintColor, currentBoneThickness);
+            drawlist.AddLine(entity.bones2d[1], entity.bones2d[6], uintColor, currentBoneThickness);
+            drawlist.AddLine(entity.bones2d[3], entity.bones2d[4], uintColor, currentBoneThickness);
+            drawlist.AddLine(entity.bones2d[6], entity.bones2d[7], uintColor, currentBoneThickness);
+            drawlist.AddLine(entity.bones2d[4], entity.bones2d[5], uintColor, currentBoneThickness);
+            drawlist.AddLine(entity.bones2d[7], entity.bones2d[8], uintColor, currentBoneThickness);
+            drawlist.AddLine(entity.bones2d[1], entity.bones2d[0], uintColor, currentBoneThickness);
+            drawlist.AddLine(entity.bones2d[0], entity.bones2d[9], uintColor, currentBoneThickness);
+            drawlist.AddLine(entity.bones2d[0], entity.bones2d[11], uintColor, currentBoneThickness);
+            drawlist.AddLine(entity.bones2d[9], entity.bones2d[10], uintColor, currentBoneThickness);
+            drawlist.AddLine(entity.bones2d[11], entity.bones2d[12], uintColor, currentBoneThickness);
+            drawlist.AddCircle(entity.bones2d[1], 5 + currentBoneThickness, uintColor);
+        }
+
         public void DrawName(Entity entity, int yOffset)
         {
             Vector2 textLocation = new Vector2(entity.viewPosition2D.X, entity.viewPosition2D.Y - yOffset);
             drawlist.AddText(textLocation, ImGui.ColorConvertFloat4ToU32(nameColor), $"{entity.name}");
+        }
+
+        public void DrawDistance(Entity entity, int yOffset2)
+        {
+            Vector2 textLocation = new Vector2(entity.viewPosition2D.X, entity.viewPosition2D.Y + yOffset2);
+            drawlist.AddText(textLocation, ImGui.ColorConvertFloat4ToU32(nameColor), $"{entity.distance}");
         }
 
         public void DrawBox(Entity entity)

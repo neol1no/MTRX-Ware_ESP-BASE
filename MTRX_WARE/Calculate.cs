@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Swed64;
 
 namespace MTRX_WARE
 {
@@ -32,6 +33,31 @@ namespace MTRX_WARE
             {
                 return new Vector2 (-99, -99);
             }
+        }
+        public static List<Vector3> ReadBones(IntPtr boneAddress, Swed swed)
+        {
+            byte[] boneBytes = swed.ReadBytes(boneAddress, 27 * 32 + 16);
+            List<Vector3> bones = new List<Vector3>();
+            foreach (var boneId in Enum.GetValues(typeof(BoneIds)))
+            {
+                float x = BitConverter.ToSingle(boneBytes, (int)boneId * 32 + 0);
+                float y = BitConverter.ToSingle(boneBytes, (int)boneId * 32 + 4);
+                float z = BitConverter.ToSingle(boneBytes, (int)boneId * 32 + 8);
+                Vector3 currentBone = new Vector3(x, y, z);
+                bones.Add(currentBone);
+            }
+            return bones;
+        }
+
+        public static List<Vector2> ReadBones2d(List<Vector3> bones, float[] viewMatrix, Vector2 screenSize)
+        {
+            List<Vector2> bones2d = new List<Vector2>();
+            foreach (Vector3 bone in bones)
+            {
+                Vector2 bone2d = WorldToScreen(viewMatrix, bone, screenSize);
+                bones2d.Add(bone2d);
+            }
+            return bones2d;
         }
     }
 }
