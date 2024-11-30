@@ -18,11 +18,12 @@ namespace MTRX_WARE
         public Vector2 viewPosition2D { get; set; }
         public int team {  get; set; }
         public float distance { get; set; }
+        public bool spotted { get; set; }
     }
 
     public enum BoneIds
     {
-        Waist = 8,
+        Waist = 1,
         Neck = 5,
         Head = 6,
         ShoulderLeft = 8,

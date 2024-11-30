@@ -1442,6 +1442,28 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
+      "Unity/5.11.10": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Unity.Abstractions.dll": {
+            "related": ".pdb"
+          },
+          "lib/netcoreapp3.0/Unity.Container.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Unity.Abstractions.dll": {
+            "related": ".pdb"
+          },
+          "lib/netcoreapp3.0/Unity.Container.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "Vortice.D3DCompiler/3.3.4": {
         "type": "package",
         "dependencies": {
@@ -5076,6 +5098,57 @@
         "system.xml.xdocument.nuspec"
       ]
     },
+    "Unity/5.11.10": {
+      "sha512": "B4+Ps3oqI78hJ+dAFsJhPkJT6qycsNExgLbtw7CEHSzKc2ac3YyUR8SHQ+ZyTwld/y5IbDx/aNOHnKE9Em1zWA==",
+      "type": "package",
+      "path": "unity/5.11.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/Unity.Abstractions.dll",
+        "lib/net40/Unity.Abstractions.pdb",
+        "lib/net40/Unity.Container.dll",
+        "lib/net40/Unity.Container.pdb",
+        "lib/net45/Unity.Abstractions.dll",
+        "lib/net45/Unity.Abstractions.pdb",
+        "lib/net45/Unity.Container.dll",
+        "lib/net45/Unity.Container.pdb",
+        "lib/net46/Unity.Abstractions.dll",
+        "lib/net46/Unity.Abstractions.pdb",
+        "lib/net46/Unity.Container.dll",
+        "lib/net46/Unity.Container.pdb",
+        "lib/net47/Unity.Abstractions.dll",
+        "lib/net47/Unity.Abstractions.pdb",
+        "lib/net47/Unity.Container.dll",
+        "lib/net47/Unity.Container.pdb",
+        "lib/net48/Unity.Abstractions.dll",
+        "lib/net48/Unity.Abstractions.pdb",
+        "lib/net48/Unity.Container.dll",
+        "lib/net48/Unity.Container.pdb",
+        "lib/netcoreapp1.0/Unity.Abstractions.dll",
+        "lib/netcoreapp1.0/Unity.Abstractions.pdb",
+        "lib/netcoreapp1.0/Unity.Container.dll",
+        "lib/netcoreapp1.0/Unity.Container.pdb",
+        "lib/netcoreapp2.0/Unity.Abstractions.dll",
+        "lib/netcoreapp2.0/Unity.Abstractions.pdb",
+        "lib/netcoreapp2.0/Unity.Container.dll",
+        "lib/netcoreapp2.0/Unity.Container.pdb",
+        "lib/netcoreapp3.0/Unity.Abstractions.dll",
+        "lib/netcoreapp3.0/Unity.Abstractions.pdb",
+        "lib/netcoreapp3.0/Unity.Container.dll",
+        "lib/netcoreapp3.0/Unity.Container.pdb",
+        "lib/netstandard1.0/Unity.Abstractions.dll",
+        "lib/netstandard1.0/Unity.Abstractions.pdb",
+        "lib/netstandard1.0/Unity.Container.dll",
+        "lib/netstandard1.0/Unity.Container.pdb",
+        "lib/netstandard2.0/Unity.Abstractions.dll",
+        "lib/netstandard2.0/Unity.Abstractions.pdb",
+        "lib/netstandard2.0/Unity.Container.dll",
+        "lib/netstandard2.0/Unity.Container.pdb",
+        "unity.5.11.10.nupkg.sha512",
+        "unity.nuspec"
+      ]
+    },
     "Vortice.D3DCompiler/3.3.4": {
       "sha512": "G0yAN1us091ulIzPfMVJeJf8JX3Tu/Wu0l4zip4HPLfVUWWxsBJF0eaEdwSPrUyz97LEG6zjHruL4sZoNRBHcA==",
       "type": "package",
@@ -5188,6 +5261,7 @@
       "ClickableTransparentOverlay >= 9.1.0",
       "Costura.Fody >= 5.7.0",
       "ImGui.NET >= 1.91.0.1",
+      "Unity >= 5.11.10",
       "swed64 >= 1.0.5"
     ]
   },
@@ -5197,11 +5271,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CEO I Matrix\\Desktop\\mtrx ware\\2 MTRX_WARE\\MTRX-Ware.io\\MTRX_WARE\\MTRX_WARE.csproj",
+      "projectUniqueName": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\MTRX_WARE.csproj",
       "projectName": "MTRX_WARE",
-      "projectPath": "C:\\Users\\CEO I Matrix\\Desktop\\mtrx ware\\2 MTRX_WARE\\MTRX-Ware.io\\MTRX_WARE\\MTRX_WARE.csproj",
+      "projectPath": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\MTRX_WARE.csproj",
       "packagesPath": "C:\\Users\\CEO I Matrix\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CEO I Matrix\\Desktop\\mtrx ware\\2 MTRX_WARE\\MTRX-Ware.io\\MTRX_WARE\\obj\\",
+      "outputPath": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\CEO I Matrix\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5248,6 +5322,10 @@
           "ImGui.NET": {
             "target": "Package",
             "version": "[1.91.0.1, )"
+          },
+          "Unity": {
+            "target": "Package",
+            "version": "[5.11.10, )"
           },
           "swed64": {
             "target": "Package",

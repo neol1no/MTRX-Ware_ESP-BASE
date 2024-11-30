@@ -11,6 +11,7 @@
           "ClickableTransparentOverlay": "9.1.0",
           "Costura.Fody": "5.7.0",
           "ImGui.NET": "1.91.0.1",
+          "Unity": "5.11.10",
           "swed64": "1.0.5"
         },
         "runtime": {
@@ -779,6 +780,11 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
+      "Unity/5.11.10": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        }
+      },
       "Vortice.D3DCompiler/3.3.4": {
         "dependencies": {
           "SharpGen.Runtime": "2.1.2-beta",
@@ -1430,6 +1436,13 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "Unity/5.11.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-B4+Ps3oqI78hJ+dAFsJhPkJT6qycsNExgLbtw7CEHSzKc2ac3YyUR8SHQ+ZyTwld/y5IbDx/aNOHnKE9Em1zWA==",
+      "path": "unity/5.11.10",
+      "hashPath": "unity.5.11.10.nupkg.sha512"
     },
     "Vortice.D3DCompiler/3.3.4": {
       "type": "package",

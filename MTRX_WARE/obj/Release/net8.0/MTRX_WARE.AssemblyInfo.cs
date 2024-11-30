@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MTRX_WARE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0d9b2aea3349f0fabd75e0f29cd4dc47460997e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+facd7ab000e3b2cac8bd7972800f524dff49268d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MTRX_WARE")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MTRX_WARE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
