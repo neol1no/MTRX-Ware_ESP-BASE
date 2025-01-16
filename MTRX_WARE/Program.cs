@@ -27,9 +27,9 @@ Entity currentEntity = new Entity();
 // offsets
 
 // offsets.cs | 
-int dwEntityList = 0x19F2488;
-int dwViewMatrix = 0x1A54550;
-int dwLocalPlayerPawn = 0x1855CE8;
+int dwEntityList = 0x1A176C8;
+int dwViewMatrix = 0x1A82740;
+int dwLocalPlayerPawn = 0x186BDF8;
 
 // client_dll.cs | 
 int m_vOldOrigin = 0x1324;
