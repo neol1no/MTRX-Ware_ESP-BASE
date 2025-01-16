@@ -112,13 +112,13 @@ namespace MTRX_WARE
                 switchTabs = 4;
             ImGui.EndGroup();
 
-            // Move to the next column (content area)
+            
             ImGui.NextColumn();
 
             // Right column (Content)
             ImGui.BeginGroup();
 
-            // Draw the background box (light gray)
+            
             Vector2 windowPos = ImGui.GetWindowPos();
             float windowX = windowPos.X;
             float windowY = windowPos.Y;
@@ -130,7 +130,7 @@ namespace MTRX_WARE
             float boxWidth = columnWidth - 20.0f;
             float boxHeight = ImGui.GetTextLineHeightWithSpacing() * 14;
 
-            // Draw the background box using the color from the color picker
+            
             ImGui.GetWindowDrawList().AddRectFilled(
                 new Vector2(boxX, boxY),
                 new Vector2(boxX + boxWidth, boxY + boxHeight),
@@ -139,7 +139,7 @@ namespace MTRX_WARE
                 ImDrawFlags.RoundCornersAll
             );
 
-            // Define the X offset (e.g., 20.0f or any value you want to use)
+            
             float xOffset = 20.0f;
 
             switch (switchTabs)
@@ -148,15 +148,38 @@ namespace MTRX_WARE
                     break;
 
                 case 1: // VISUALS
-                        // Apply the X offset for each item in the second column
-                    float yOffset = ImGui.GetCursorPosY() + 8;  // Get the current Y position
+                        
+                    float yOffset = ImGui.GetCursorPosY() + 8;
+
+
+
+                    float horizontalOffset = 190.0f;
+                    Vector2 previewSize = new Vector2(200, 200);
+                    Vector2 cursorStart = ImGui.GetCursorPos();
+
+                    ImGui.SetCursorPos(new Vector2(cursorStart.X + horizontalOffset, cursorStart.Y));
+                    ImGui.Text("ESP Preview:");
+
+                    ImGui.SetCursorPos(new Vector2(cursorStart.X + horizontalOffset, cursorStart.Y + ImGui.GetTextLineHeightWithSpacing() + 5));
+
+                    Vector2 previewPosition = ImGui.GetCursorScreenPos();
+
+                    ImGui.GetWindowDrawList().AddRect(previewPosition, previewPosition + previewSize, ImGui.ColorConvertFloat4ToU32(new Vector4(1, 1, 1, 1)));
+
+                    ImDrawListPtr previewDrawList = ImGui.GetWindowDrawList();
+
+                    DrawESPPreview(previewDrawList, previewPosition, previewSize);
+
+                    ImGui.Dummy(previewSize);
+
+
 
                     // Enable ESP checkbox
                     ImGui.SetCursorPos(new Vector2(columnX + xOffset, yOffset));
                     ImGui.Checkbox("Enable ESP", ref enableESP);
 
                     // Enable Box ESP checkbox
-                    yOffset = ImGui.GetCursorPosY(); // Update Y position
+                    yOffset = ImGui.GetCursorPosY(); 
                     ImGui.SetCursorPos(new Vector2(columnX + xOffset, yOffset));
                     ImGui.Checkbox("Enable Box ESP", ref enableBoxESP);
 
@@ -427,6 +450,57 @@ namespace MTRX_WARE
                         }
                     }
                 }
+        }
+
+        private void DrawESPPreview(ImDrawListPtr previewDrawList, Vector2 previewPosition, Vector2 previewSize)
+        {
+            // Dummy entity setup
+            List<Entity> previewEntities = new List<Entity>
+    {
+        new Entity { name = "Enemy1", team = 2, spotted = true, position2D = new Vector2(50, 50), viewPosition2D = new Vector2(50, 20) },
+        
+        new Entity { name = "Teammate1", team = 1, spotted = true, position2D = new Vector2(100, 150), viewPosition2D = new Vector2(100, 120) }
+    };
+
+            // Dummy local player for reference
+            Entity dummyLocalPlayer = new Entity { position = new Vector3(0, 0, 0) };
+
+            // Scaling factor for the preview
+            float scale = previewSize.X / 200.0f;
+
+            // Iterate through dummy entities and draw enabled ESP features
+            foreach (var entity in previewEntities)
+            {
+                // Scale positions for preview
+                Vector2 scaledPosition2D = previewPosition + (entity.position2D * scale);
+                Vector2 scaledViewPosition2D = previewPosition + (entity.viewPosition2D * scale);
+
+                // Draw ESP features based on settings
+                if (enableBoxESP)
+                {
+                    float entityHeight = scaledPosition2D.Y - scaledViewPosition2D.Y;
+                    Vector2 rectTop = new Vector2(scaledViewPosition2D.X - entityHeight / 3, scaledViewPosition2D.Y);
+                    Vector2 rectBottom = new Vector2(scaledViewPosition2D.X + entityHeight / 3, scaledPosition2D.Y);
+                    Vector4 boxColor = entity.team == 1 ? teamColor : enemyColor;
+                    previewDrawList.AddRect(rectTop, rectBottom, ImGui.ColorConvertFloat4ToU32(boxColor));
+                }
+
+                if (enableNameESP)
+                {
+                    previewDrawList.AddText(scaledViewPosition2D - new Vector2(0, 15), ImGui.ColorConvertFloat4ToU32(nameColor), entity.name);
+                }
+
+                if (enableDistanceESP)
+                {
+                    float distance = Vector3.Distance(dummyLocalPlayer.position, entity.position);
+                    previewDrawList.AddText(scaledPosition2D + new Vector2(0, 5), ImGui.ColorConvertFloat4ToU32(distanceColor), $"{distance:F1}m");
+                }
+
+                if (enableLineESP)
+                {
+                    previewDrawList.AddLine(previewPosition + new Vector2(previewSize.X / 2, previewSize.Y), scaledPosition2D, ImGui.ColorConvertFloat4ToU32(enemyColor));
+                }
+            }
         }
 
         // check position
