@@ -1,6 +1,6 @@
 MTRX-Ware [PUBLIC]
 
-open source branch of MTRX-WARE.
+made this in like 10 minutes.
 
 Dont expect crazy amount of updates.
 
