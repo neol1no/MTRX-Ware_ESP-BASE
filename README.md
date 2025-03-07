@@ -2,8 +2,8 @@ MTRX-Ware [PUBLIC]
 
 open source branch of MTRX-WARE.
 
-Dont expect crazy amount of updates or private features.
+Dont expect crazy amount of updates.
 
-Im working on the private version more then on this one tbh.
+Might continue working on it when i have the passion.
 
 Work in Progress / made for people who are too stupid for basic esp n shit, use at own risk
