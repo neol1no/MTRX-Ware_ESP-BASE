@@ -27,20 +27,20 @@ Entity currentEntity = new Entity();
 // offsets
 
 // offsets.cs | 
-int dwEntityList = 0x1A176C8;
-int dwViewMatrix = 0x1A82740;
-int dwLocalPlayerPawn = 0x186BDF8;
+int dwEntityList = 0x1A1F730;
+int dwViewMatrix = 0x1A89130;
+int dwLocalPlayerPawn = 0x1874050;
 
 // client_dll.cs | 
 int m_vOldOrigin = 0x1324;
 int m_iTeamNum = 0x3E3;
 int m_lifeState = 0x348;
-int m_hPlayerPawn = 0x80C;
+int m_hPlayerPawn = 0x814;
 int m_vecViewOffset = 0xCB0;
 int m_iszPlayerName = 0x660;
 int m_modelState = 0x170;
 int m_pGameSceneNode = 0x328;
-int m_entitySpottedState = 0x23D0;
+int m_entitySpottedState = 0x11A8;
 int m_bSpotted = 0x8;
 
 // ESP loop
